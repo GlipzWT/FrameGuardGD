@@ -52,13 +52,13 @@ bool Panel::setup() {
     m_buttonMenu->setPosition({0,0});
     // Restore Popup's standard close button position after moving its menu.
     m_closeBtn->setPosition({15,287});
-    auto small=[&](char const* text,float x,SEL_MenuHandler cb) {
+    auto makeSmallButton=[&](char const* text,float x,SEL_MenuHandler cb) {
         auto l=CCLabelBMFont::create(text,"bigFont.fnt"); l->setScale(0.5f);
         auto b=CCMenuItemSpriteExtra::create(l,this,cb);
         b->setPosition({x,218}); m_buttonMenu->addChild(b);
     };
-    small("-",230,menu_selector(Panel::onMinus));
-    small("+",350,menu_selector(Panel::onPlus));
+    makeSmallButton("-",230,menu_selector(Panel::onMinus));
+    makeSmallButton("+",350,menu_selector(Panel::onPlus));
     card(m_mainLayer,22,49,338,106);
     char const* names[]={"Assist (Practice only)","Local rollback [EXPERIMENTAL]",
         "Correct presses","Correct releases","Show status HUD"};
