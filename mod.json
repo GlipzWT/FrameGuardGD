@@ -1,0 +1,30 @@
+{
+  "geode": "5.11.2",
+  "gd": { "win": "2.2081" },
+  "id": "r7324507.frameguard",
+  "name": "FrameGuard (Experimental)",
+  "version": "v0.1.0-alpha.1",
+  "developer": "r7324507",
+  "description": "Experimental Practice-only Wave timing assist. Approximate static-world predictor; player-only rewind, NOT universal rollback.",
+  "settings": {
+    "enabled": {
+      "type": "bool", "name": "Enable assist (Practice only)", "default": false,
+      "description": "Experimental. Single forward Wave in static levels. No guarantee of survival; not suitable for records."
+    },
+    "window": {
+      "type": "int", "name": "Correction window (physics frames)",
+      "default": 5, "min": 0, "max": 10,
+      "description": "0 disables correction. One frame is one observed PlayerObject physics update, not one rendered frame. Disable TPS/speed/CBF mods for initial tests.",
+      "control": { "arrows": true, "arrow-step": 1, "big-arrows": false, "slider": true, "slider-step": 1, "input": true }
+    },
+    "rollback": {
+      "type": "bool", "name": "Experimental LOCAL rollback", "default": false,
+      "description": "Player-only checkpoint restore and linear Wave replay. NOT a full game-state rollback. Briefly suppresses collision death while waiting for late input, bounded by the correction window. Static levels + Practice only. Read README_RU.md."
+    },
+    "presses": { "type": "bool", "name": "Correct presses", "default": true },
+    "releases": { "type": "bool", "name": "Correct releases", "default": true },
+    "hud": { "type": "bool", "name": "Show status HUD", "default": true },
+    "open-menu": { "type": "keybind", "name": "Open FrameGuard menu", "default": "F7" },
+    "toggle-assist": { "type": "keybind", "name": "Toggle assist", "default": "F8" }
+  }
+}

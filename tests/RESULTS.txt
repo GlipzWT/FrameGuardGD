@@ -1,0 +1,13 @@
+4423 planner checks passed (including 2000 randomized scenes)
+
+Compiler: GCC 11.5.0, Linux, C++17, -O2 -DNDEBUG -Wall -Wextra -Werror -pedantic
+Geode CLI 3.9.0: geode project check -p windows: exit 0
+JSON and workflow YAML parsed successfully.
+All referenced m_* binding fields were found in GD 2.2081 bindings.
+
+NOT performed:
+- Windows DLL / .geode compilation (Windows toolchain + SDK unavailable here)
+- In-game tests, UI rendering, hook timing, GD collision correctness
+- AddressSanitizer / UBSan runtime (required runtime libraries unavailable)
+
+These results apply ONLY to the independent planner, not to the game integration.
