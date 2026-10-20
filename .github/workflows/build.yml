@@ -1,0 +1,35 @@
+name: Build Windows Geode mod
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+permissions:
+  contents: read
+jobs:
+  planner:
+    name: Standalone planner tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: g++ -std=c++17 -O2 -Wall -Wextra -pedantic -Iinclude tests/planner_tests.cpp -o planner-tests
+      - run: ./planner-tests
+  windows:
+    name: Windows x64 mod
+    needs: planner
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build with pinned Geode SDK
+        id: build
+        uses: geode-sdk/build-geode-mod@a0f7676e6fcd1a584f6d0c1c800239008412defc
+        with:
+          sdk: given
+          target: Win64
+          bindings-ref: d6f3312f0886b2c285fd0d2593ebabdc03b6ca0c
+          export-pdb: true
+      - name: Downloadable mod package
+        uses: actions/upload-artifact@v4
+        with:
+          name: FrameGuard-Windows-alpha
+          path: ${{ steps.build.outputs.build-output }}
+          if-no-files-found: error
